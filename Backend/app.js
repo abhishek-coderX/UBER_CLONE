@@ -22,13 +22,19 @@ app.use(cookiesParser());
 const connectToDb = require("./db/db");
 connectToDb();
 
+
 //res.send header and sab set karta hai and automatic end karta hai
 // res.send aise nahi karta raw data send karta hai bas
 app.get("/", (req, res) => {
   res.send("namste world");
 });
 
+
 const userRoutes = require("./routes/user.routes");
+const captainRoutes = require('./routes/captain.routes')
 app.use("/users", userRoutes);
+app.use("/captains",captainRoutes)
+
+
 
 module.exports = app;

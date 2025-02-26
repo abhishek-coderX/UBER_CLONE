@@ -221,3 +221,90 @@ If there is a server error, the server will respond with a status code of 500.
 }
 ```
 
+
+
+# Captain Registration API Documentation
+
+## Endpoint
+`POST /register`
+
+## Description
+Registers a new captain with their personal and vehicle details.
+
+## Request Headers
+- `Content-Type: application/json`
+
+## Request Body (JSON)
+```json
+{
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "password": "SecurePass123",
+  "vehicle": {
+    "color": "Red",
+    "plate": "MH12AB1234",
+    "capacity": 4,
+    "vehicleType": "car"
+  }
+}
+```
+
+## Request Validation
+- `email` must be a valid email format.
+- `name` must be at least 3 characters long.
+- `password` must be at least 6 characters long.
+- `vehicle.color` must be at least 3 characters long.
+- `vehicle.plate` must be at least 3 characters long.
+- `vehicle.capacity` must be an integer and at least 1.
+- `vehicle.vehicleType` must be one of: `car`, `motorcycle`, `auto`.
+
+## Response
+### Success Response (201 Created)
+```json
+{
+  "token": "<JWT_TOKEN>",
+  "captain": {
+    "_id": "60d21b4667d0d8992e610c85",
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "status": "inactive",
+    "vehicle": {
+      "color": "Red",
+      "plate": "MH12AB1234",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+}
+```
+
+### Error Responses
+#### 400 Bad Request - Validation Errors
+```json
+{
+  "errors": [
+    {
+      "msg": "Invalid Email",
+      "param": "email",
+      "location": "body"
+    }
+  ]
+}
+```
+
+#### 400 Bad Request - Captain Already Exists
+```json
+{
+  "message": "Captain already exists"
+}
+```
+
+## Notes
+- The password is securely hashed before being stored in the database.
+- The token generated is valid for 24 hours and should be used for authentication.
+- The captain's default status is `inactive` upon registration.
+
+## Authorization
+- No authorization required for registration.
+
+
