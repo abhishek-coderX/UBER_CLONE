@@ -12,6 +12,12 @@ app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
+//cookiesparser
+const cookiesParser=require('cookie-parser');
+app.use(cookiesParser());
+
 //database se connect karenge
 const connectToDb = require("./db/db");
 connectToDb();
