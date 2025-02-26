@@ -226,7 +226,7 @@ If there is a server error, the server will respond with a status code of 500.
 # Captain Registration API Documentation
 
 ## Endpoint
-`POST /register`
+`POST /captains/register`
 
 ## Description
 Registers a new captain with their personal and vehicle details.
@@ -304,7 +304,109 @@ Registers a new captain with their personal and vehicle details.
 - The token generated is valid for 24 hours and should be used for authentication.
 - The captain's default status is `inactive` upon registration.
 
-## Authorization
-- No authorization required for registration.
+
+
+
+## 1. Captain Login
+### Endpoint
+`POST /captains/login`
+
+### Description
+Authenticates a captain using email and password.
+
+### Request Headers
+- `Content-Type: application/json`
+
+### Request Body (JSON)
+```json
+{
+  "email": "johndoe@example.com",
+  "password": "SecurePass123"
+}
+```
+
+### Success Response (200 OK)
+```json
+{
+  "token": "<JWT_TOKEN>",
+  "captain": {
+    "_id": "60d21b4667d0d8992e610c85",
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "status": "active",
+    "vehicle": {
+      "color": "Red",
+      "plate": "MH12AB1234",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+}
+```
+
+### Error Response (401 Unauthorized)
+```json
+{
+  "message": "Invalid email or password"
+}
+```
+
+---
+
+## 2. Captain Profile
+### Endpoint
+`GET /captains/profile`
+
+### Description
+Fetches the captain's profile details.
+
+### Success Response (200 OK)
+```json
+{
+  "captain": {
+    "_id": "60d21b4667d0d8992e610c85",
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "status": "active",
+    "vehicle": {
+      "color": "Red",
+      "plate": "MH12AB1234",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+}
+```
+
+### Error Response (401 Unauthorized)
+```json
+{
+  "message": "Unauthorized"
+}
+```
+
+---
+
+## 3. Captain Logout
+### Endpoint
+`GET /captains/logout`
+
+### Description
+Logs out the captain by invalidating the token.
+
+### Success Response (200 OK)
+```json
+{
+  "message": "Logout successfully"
+}
+```
+
+### Error Response (401 Unauthorized)
+```json
+{
+  "message": "Unauthorized"
+}
+```
+
 
 
