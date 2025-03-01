@@ -43,7 +43,7 @@ const CaptainLogin = () => {
     <img className='w-16 mb-10' src="https://imgs.search.brave.com/FZq7YFqzVbkjhipVXmxfaZY-RmPwy3wsG0WV1UdM8bs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9sb2dv/cy13b3JsZC5uZXQv/d3AtY29udGVudC91/cGxvYWRzLzIwMjAv/MDUvVWJlci1Mb2dv/LTcwMHgzOTQucG5n" alt="" />
       <form onSubmit={submitHandler}>
 
-        <h3 className="text-lg font-medium mb-2">What's your email</h3>
+        <h3 className="text-lg font-medium mb-2">Captain's email</h3>
         <input
           className="bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border-none outline-none w-full text-lg placeholder:text-base"
           required
@@ -53,7 +53,7 @@ const CaptainLogin = () => {
           placeholder="email@example.com"
         />
 
-        <h3 className="text-lg font-medium mb-2 ">Enter Password</h3>
+        <h3 className="text-lg font-medium mb-2 ">Captain's password</h3>
         <input
           className="bg-[#eeeeee] border-none outline-none mb-7 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base"
           required
